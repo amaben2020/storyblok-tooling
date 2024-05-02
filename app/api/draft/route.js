@@ -1,5 +1,5 @@
 // route handler with secret and slug
-import { draftMode, cookies } from 'next/headers'
+import { cookies, draftMode } from 'next/headers'
 
 export async function GET(request) {
   'use server'
@@ -10,9 +10,9 @@ export async function GET(request) {
 
   // Check the secret and next parameters
   // This secret should only be known to this route handler and the CMS
-  if (secret !== process.env.DRAFT_SECRET_TOKEN) {
-    return new Response('Invalid token', { status: 401 })
-  }
+  // if (secret !== process.env.DRAFT_SECRET_TOKEN) {
+  //   return new Response('Invalid token', { status: 401 })
+  // }
 
   // Enable Draft Mode by setting the cookie
   draftMode().enable()
