@@ -368,3 +368,5 @@ export default async function exit(req, res) {
 
 - Bugs or Feature Requests? [Submit an issue](/../../issues/new);
 - Do you have questions about Storyblok or you need help? [Join the Storyblok Discord Community](https://discord.gg/jKrbAMz).
+
+https://github.com/jpkha/nextjs13-storyblok

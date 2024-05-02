@@ -1,16 +1,18 @@
-import styles from '../page.module.css'
+import { draftMode } from 'next/headers'
+import StoryblokBridge from '../../components/StoryblokBridge'
 import { StoryblokComponent } from '../../components/StoryblokComponent'
 import { getLinks, getStory } from '../../utils/storyblok'
-import StoryblokBridge from "../../components/StoryblokBridge";
-import { draftMode } from "next/headers";
+import styles from '../page.module.css'
 
 interface Paths {
   slug: string[]
 }
 export async function generateStaticParams() {
   const links = await getLinks()
-  const paths: Paths[] = [];
+  console.log(links)
+  const paths: Paths[] = []
   Object.keys(links).forEach((linkKey) => {
+    console.log(linkKey)
     if (links[linkKey].is_folder || links[linkKey].slug === 'home') {
       return
     }
@@ -28,21 +30,22 @@ async function fetchData(params: Paths) {
 
   const story = await getStory(slug)
   return {
-    story: story ?? false
+    story: story ?? false,
   }
 }
 
-export default async function Page({ params } : {params: Paths}) {
-  const { story } = await fetchData(params);
-  const version = process.env.NEXT_PUBLIC_STORYBLOK_VERSION;
-  const { isEnabled } = draftMode();
+export default async function Page({ params }: { params: Paths }) {
+  const { story } = await fetchData(params)
+  const version = process.env.NEXT_PUBLIC_STORYBLOK_VERSION
+  const { isEnabled } = draftMode()
   return (
     <main className={styles.container}>
       <div>Preview mode :{JSON.stringify(isEnabled)}</div>
-      { isEnabled || version === 'draft' ?
-          <StoryblokBridge blok={ story.content }/> :
-          <StoryblokComponent blok={ story.content }/>
-      }
+      {isEnabled || version === 'draft' ? (
+        <StoryblokBridge blok={story.content} />
+      ) : (
+        <StoryblokComponent blok={story.content} />
+      )}
     </main>
   )
 }
