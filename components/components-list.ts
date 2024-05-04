@@ -14,6 +14,5 @@ export const ComponentsMap: ComponentsMapProps = {
   grid: Grid,
   feature: Feature,
   teaser: Teaser,
-  blog: Blog,
-} 
-
+  Blog: Blog,
+}

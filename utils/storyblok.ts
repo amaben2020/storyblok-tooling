@@ -28,7 +28,7 @@ export async function getStory(slug: string) {
   }
   const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
     version: process.env.NEXT_PUBLIC_STORYBLOK_VERSION as 'draft' | 'published',
-    resolve_relations: ['blog.author'],
+    resolve_relations: ['Blog.author'],
   })
   const story = data ? data.story : null
   return story
