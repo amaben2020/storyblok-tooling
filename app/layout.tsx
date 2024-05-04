@@ -1,5 +1,4 @@
 import './globals.css'
-import StoryblokBridge from '../components/StoryblokBridge'
 
 export default function RootLayout({
   children,
