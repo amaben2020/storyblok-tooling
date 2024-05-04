@@ -15,4 +15,5 @@ export const ComponentsMap: ComponentsMapProps = {
   feature: Feature,
   teaser: Teaser,
   blog: Blog,
-}
+} 
+
